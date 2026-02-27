@@ -147,6 +147,7 @@ h1 .italic {
     position: relative;
     overflow: hidden;
     text-decoration: none;
+    text-align: left;
 }
 
 .featured-link::before {
@@ -173,11 +174,25 @@ h1 .italic {
     transform: translateX(100%);
 }
 
-.featured-link .link-title {
+.link-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
     position: relative;
     z-index: 1;
-    font-weight: 300;
+}
+
+.featured-link .link-title {
+    font-size: 1.1rem;
+    font-weight: 400;
     letter-spacing: 0.02em;
+}
+
+.featured-link .link-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 .featured-link .link-arrow {
