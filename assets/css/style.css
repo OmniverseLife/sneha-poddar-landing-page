@@ -291,7 +291,7 @@ footer {
     left: 0;
     width: 100vw;
     height: 100vh;
-    opacity: 0.04;
+    opacity: 0.02; /* Halved opacity to reduce composite overhead */
     z-index: 1;
     pointer-events: none;
     /* Basic noise pattern SVG encoded */
@@ -301,10 +301,11 @@ footer {
 .blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px);
+    /* Removed expensive filter: blur(100px) which lags mobile devices heavily */
     z-index: 0;
-    opacity: 0.4;
+    opacity: 0.25; /* Adjusted for missing blur spread */
     animation: float 20s infinite ease-in-out alternate;
+    will-change: transform;
 }
 
 .blob-1 {
@@ -389,19 +390,19 @@ footer {
 
 @keyframes float {
     0% {
-        transform: translate(0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
     }
 
     33% {
-        transform: translate(30px, -50px) scale(1.1);
+        transform: translate3d(30px, -50px, 0) scale(1.1);
     }
 
     66% {
-        transform: translate(-20px, 20px) scale(0.9);
+        transform: translate3d(-20px, 20px, 0) scale(0.9);
     }
 
     100% {
-        transform: translate(0, -30px) scale(1.05);
+        transform: translate3d(0, -30px, 0) scale(1.05);
     }
 }
 
